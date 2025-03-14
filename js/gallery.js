@@ -71,11 +71,16 @@ const gallery = document.querySelector(".gallery");
 gallery.insertAdjacentHTML("beforeend", createMarkup(images));
 gallery.addEventListener("click", handleClick);
 
+
 function handleClick(event) {
-    if (event.target === event.currentTarget) {
-        // console.log("OK");
-        
-    }
+  event.preventDefault();
+  if (!event.target.classList.contains("gallery-image")) {
+    return;
+  }
+  const originalImg = event.target.dataset.source;
+  const originalGallery = images.find((item) => item.original === originalImg);
+
+  console.log(originalGallery);
 }
 
 
@@ -87,7 +92,7 @@ function createMarkup(arr) {
   <a class="gallery-link" href="${item.original}">
     <img
       class="gallery-image"
-      src="${item.preview}""
+      src="${item.preview}"
       data-source="${item.original}"
       alt="${item.description}"
     />
@@ -95,6 +100,8 @@ function createMarkup(arr) {
 </li>
     `).join("");
 }
+
+
 
 
 // console.log(createMarkup(images));
