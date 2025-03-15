@@ -80,7 +80,14 @@ function handleClick(event) {
   const originalImg = event.target.dataset.source;
   const originalGallery = images.find((item) => item.original === originalImg);
 
-  console.log(originalGallery);
+  const instance = basicLightbox.create(`
+    <div class="modal">
+      <img src="${originalGallery.original}", alt="${originalGallery.description}"/>
+    <div/>
+    `)
+  
+  instance.show();
+  // console.log(originalGallery);
 }
 
 
@@ -100,6 +107,7 @@ function createMarkup(arr) {
 </li>
     `).join("");
 }
+
 
 
 
